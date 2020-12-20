@@ -5,3 +5,13 @@
 
 
 
+<div *ngIf="loadingRouteConfig" class="loading"></div>
+
+<ngx-spinner bdColor = "rgba(227,227,227,0.31)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"
+ template="<div class='custom-loader'></div>">
+</ngx-spinner>
+
+<simple-notifications></simple-notifications>
+
+
+

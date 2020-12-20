@@ -11,6 +11,10 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { LayoutContainersModule } from './containers/layout/layout.containers.module';
 import { CoreModule } from './core/core.module';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   imports: [
@@ -22,12 +26,35 @@ import { CoreModule } from './core/core.module';
     TranslateModule.forRoot(),
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    CoreModule
+    CoreModule,
+    SimpleNotificationsModule.forRoot({
+      position: ['bottom', 'right'],
+    }),
+    SocialLoginModule,
+    NgxSpinnerModule,
+    NgxSmartModalModule.forRoot(),
   ],
   declarations: [
     AppComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.googleClientId
+            )
+          },
+        ]
+      } as SocialAuthServiceConfig,
+    },
+    NgxSpinnerService,
+    NgxSmartModalService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

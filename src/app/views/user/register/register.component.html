@@ -13,28 +13,46 @@
     </a>
     <h6 class="mb-4">Register</h6>
 
-    <form #registerForm="ngForm" novalidate  (ngSubmit)="onSubmit()">
+    <button (click)="fbAuthentication()" type="button" class="btn btn-primary btn-block default mb-3">
+      <i class="simple-icon-social-facebook"></i>
+      Facebook
+    </button>
+
+    <button (click)="googleAuthentication()" type="button" class="btn btn-danger  btn-block default mb-5">
+      <i class="simple-icon-social-google"></i>
+      Google
+    </button>
+
+
+
+    <form [formGroup]="form"  #f="ngForm"  (ngSubmit)="onSubmit()" novalidate class="tooltip-label-right">
+
       <label class="form-group has-float-label">
-        <input class="form-control" required ngModel #displayName="ngModel" name="displayName"/>
-        <span>{{ 'user.fullname' | translate }}</span>
-        <div *ngIf="!displayName.valid && registerForm.submitted" class="invalid-tooltip">Name is required!</div>
+        <input formControlName="email" type="email" class="form-control" name="email" placeholder="Email">
+        <span>Email</span>
+        <div *ngIf="formFields.email.errors?.required && f.submitted" class="invalid-tooltip">Email is required!</div>
+        <div *ngIf="formFields.email?.errors?.email && f.submitted" class="invalid-tooltip">Email is invalid!</div>
       </label>
+
       <label class="form-group has-float-label">
-        <input class="form-control" required email ngModel #email="ngModel" name="email"/>
-        <span>{{ 'user.email' | translate }}</span>
-        <div *ngIf="!email.valid && registerForm.submitted" class="invalid-tooltip">Email is required!</div>
-        <div *ngIf="email?.errors?.email && registerForm.submitted" class="invalid-tooltip">Email must be a valid address!</div>
+        <input formControlName="password" type="password" class="form-control" name="password" placeholder="Password">
+        <span>Password</span>
+        <div *ngIf="formFields.password?.errors?.required && f.submitted" class="invalid-tooltip">Password is required!</div>
+        <div *ngIf="formFields.password?.errors?.pattern && f.submitted" class="invalid-tooltip">Password must include alpha numeric,special character and must be 8 characters long!</div>
       </label>
+
       <label class="form-group has-float-label">
-        <input class="form-control" type="password" placeholder="" required ngModel #password="ngModel" name="password"/>
-        <span>{{ 'user.password' | translate }}</span>
-        <div *ngIf="!password.valid && registerForm.submitted" class="invalid-tooltip">Password is required!</div>
+        <input formControlName="confirmPassword" type="password" class="form-control" name="password" placeholder="Confirm Password">
+        <span>Confirm Password</span>
+        <div *ngIf="formFields.confirmPassword?.errors?.required && f.submitted" class="invalid-tooltip">Confirm Password is required !</div>
+        <div *ngIf="form?.errors && f.submitted" class="invalid-tooltip">Confirm Password not matched !</div>
       </label>
+
       <div class="d-flex justify-content-between align-items-center">
         <a routerLink="/user/forgot-password">{{ 'user.forgot-password' | translate }}?</a>
         <app-state-button [btnClass]="'btn btn-primary btn-lg btn-shadow'" [currentState]="buttonState"
           [isDisabled]="buttonDisabled" click="onLoginClick()">
-          {{ 'user.register-button' | translate | uppercase }}
+          Register
         </app-state-button>
 
       </div>

@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.coloredstrategies.com',
+  apiUrl: 'http://localhost:3000',
+  baseDomain: 'ideaplan.io',
+  s3BucketUrl: 'https://ideaplan.s3.us-east-2.amazonaws.com/',
   defaultMenuType: 'menu-default',
   subHiddenBreakpoint: 1440,
   menuHiddenBreakpoint: 768,
@@ -29,5 +31,9 @@ export const environment = {
     messagingSenderId: '16217062888',
     appId: '1:16217062888:web:6b08232ca0c9662fedb85d',
     measurementId: 'G-8ETT79WRRN'
-  }
+  },
+
+  facebookAppId:'3554144754674563',
+  googleClientId:'231773896593-claceh4rtjvpqjd6mmv4bf05k0ifd15v.apps.googleusercontent.com'
+
 };

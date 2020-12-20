@@ -5,8 +5,8 @@ import { ErrorComponent } from './error/error.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { environment } from './../../environments/environment';
 
-const redirectUnauthorizedToLogin = () =>  redirectUnauthorizedTo(['/user']) ;
-const redirectLoggedInToItems = () => redirectLoggedInTo(['/app']);
+// const redirectUnauthorizedToLogin = () =>  redirectUnauthorizedTo(['/user']) ;
+// const redirectLoggedInToItems = () => redirectLoggedInTo(['/app']);
 
 // let routes: Routes = [
 //   {

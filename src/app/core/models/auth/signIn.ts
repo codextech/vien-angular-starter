@@ -1,5 +1,5 @@
 
-export interface ISignInCredentials {
+export class SignInCredentials {
   email: string;
   password: string;
 }

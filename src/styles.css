@@ -1,0 +1,19 @@
+
+
+
+@import "~ngx-smart-modal/ngx-smart-modal";
+
+
+.w-modal{
+  width: 100% !important;
+  max-width: 800px !important;
+}
+
+
+.simple-notification-wrapper {
+  z-index: 10000 !important;
+}
+
+
+
+

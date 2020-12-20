@@ -13,27 +13,37 @@
     </a>
     <h6 class="mb-4">Login</h6>
 
+
+    <button (click)="fbAuthentication()" type="button" class="btn btn-primary btn-block default mb-3">
+      <i class="simple-icon-social-facebook"></i>
+      Facebook
+    </button>
+
+    <button (click)="googleAuthentication()" type="button" class="btn btn-danger  btn-block default mb-4">
+      <i class="simple-icon-social-google"></i>
+      Google
+    </button>
+
     <form #loginForm="ngForm" novalidate (ngSubmit)="onSubmit()">
       <label class="form-group has-float-label">
         <input class="form-control" required email ngModel #email="ngModel" name="email" [(ngModel)]="emailModel" />
-        <span>{{ 'user.email' | translate }}</span>
+        <span>Email</span>
         <div *ngIf="!email.valid && loginForm.submitted" class="invalid-tooltip">Email is required!</div>
       </label>
       <label class="form-group has-float-label">
         <input class="form-control" type="password" placeholder="" required ngModel #password="ngModel" name="password"
           [(ngModel)]="passwordModel" />
-        <span>{{ 'user.password' | translate }}</span>
+        <span>Password </span>
         <div *ngIf="!password.valid && loginForm.submitted" class="invalid-tooltip">Password is required!</div>
       </label>
       <div class="d-flex justify-content-between align-items-center">
         <a routerLink="/user/forgot-password">{{ 'user.forgot-password' | translate }}?</a>
         <app-state-button [btnClass]="'btn btn-primary btn-lg btn-shadow'" [currentState]="buttonState"
           [isDisabled]="buttonDisabled" click="onLoginClick()">
-          {{ 'user.login-button' | translate | uppercase }}
+          {{ 'Login' | uppercase }}
         </app-state-button>
       </div>
     </form>
 
   </div>
 </div>
-<simple-notifications></simple-notifications>
